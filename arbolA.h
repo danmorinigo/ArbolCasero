@@ -43,6 +43,11 @@ public:
     int enNivel(Dato buscado, Nodo* nodo, int nivel);
     void nivelMasNodos();
     int nivelConMasNodos();
+    void balanceado();
+    bool balance(Nodo* nodo);
+    int alturaBalance(Nodo* nodo);
+    int vAbsoluto(int numero);
+    bool simetrico(const ArbolA& aComparar);
 };
 
 #endif // ARBOLA_H_INCLUDED

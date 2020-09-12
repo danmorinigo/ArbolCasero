@@ -32,6 +32,7 @@ void menu(ArbolA* arbolito){
         cout << "13. Recorrido en ancho ver.2\n";
         cout << "14. Mostrar en que nivel esta un dato\n";
         cout << "15. Nivel con mas nodos\n";
+        cout << "16. Balanceado?\n";
         cout << "0. Salir\n";
         cout << "\nOpcion: ";
         cin >> opcion;
@@ -123,6 +124,10 @@ void menu(ArbolA* arbolito){
             case 15:
                 cout << "\nNivel con mas nodos\n";
                 arbolito->nivelMasNodos();
+                break;
+            case 16:
+                cout << "\nEsta balanceado?\n";
+                arbolito->balanceado();
                 break;
         }
     }while(opcion != 0);

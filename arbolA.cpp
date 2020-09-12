@@ -36,25 +36,22 @@ void ArbolA::insertar(Nodo* ptrRaiz, Dato aInsertar){
     if(!raiz){
         Nodo* auxAinsertar = new Nodo(aInsertar);
         this->raiz = auxAinsertar;
-        //cout << "RAIZ!" << endl;
     }else{
         int datoEnNodo = ptrRaiz->obtenerDato();
-        //cout << "|| " << aInsertar << " vs " << datoEnNodo << " ||" << endl;
         if(aInsertar < datoEnNodo){
-            cout << "<---" << endl;
+            //cout << "<---" << endl;
             if(ptrRaiz->hijoIzq()){
-                cout << "<-" << endl;
+                //cout << "<-" << endl;
                 insertar(ptrRaiz->obtenerIzquierda(), aInsertar);
             }else{
-                //cout << "no hijo, INSERTO!" << endl;
                 Nodo* auxAinsertar = new Nodo(aInsertar);
                 auxAinsertar->asignarPadre(ptrRaiz);
                 ptrRaiz->asignarIzquierda(auxAinsertar);
             }
         }else if(aInsertar > datoEnNodo){
-            cout << "--->" << endl;
+            //cout << "--->" << endl;
             if(ptrRaiz->hijoDer()){
-                cout << "->" << endl;
+                //cout << "->" << endl;
                 insertar(ptrRaiz->obtenerDerecha(), aInsertar);
             }else{
                 //cout << "no hijo, INSERTO!" << endl;
@@ -276,7 +273,8 @@ int ArbolA::obtenerAltura(Nodo* node) {
 }
 
 int ArbolA::obtenerAltura() {
-    return this->obtenerAltura(this->raiz);
+    return obtenerAltura(raiz);
+    //return this->obtenerAltura(this->raiz);
 }
 
 void ArbolA::mayor(){
@@ -385,5 +383,51 @@ int ArbolA::enNivel(Dato buscado, Nodo* nodo, int nivel){
         return enNivel(buscado, nodo->obtenerDerecha(), nivel + 1);
     }else{
         return enNivel(buscado, nodo->obtenerIzquierda(), nivel + 1);
+    }
+}
+void ArbolA::balanceado(){
+    if(balance(this->raiz)){
+        cout << "SI\n";
+    }else{
+        cout << "NO\n";
+    }
+}
+bool ArbolA::balance(Nodo* nodo){
+    if(!nodo){
+        return true;
+    }
+    cout << "CHEQUEO: " << nodo->obtenerDato();
+    int altDer = 0, altIzq = 0;
+    altDer = alturaBalance(nodo->obtenerDerecha());
+    altIzq = alturaBalance(nodo->obtenerIzquierda());
+    int diferencia = vAbsoluto(altDer - altIzq);
+    if(diferencia > 1){
+        cout << " Mal! (Diferencia " << diferencia <<")" << endl;
+        return false;
+    }
+    cout << " Ok!" << endl;
+    if(!balance(nodo->obtenerDerecha())){
+        return false;
+    }
+    return balance(nodo->obtenerIzquierda());
+}
+int ArbolA::alturaBalance(Nodo* nodo){
+    if(nodo){
+        int altDer = alturaBalance(nodo->obtenerDerecha()) + 1;
+        int altIzq = alturaBalance(nodo->obtenerIzquierda()) + 1;
+        return max(altDer, altIzq);
+    }
+    return 0;
+}
+int ArbolA::vAbsoluto(int numero){
+    if(numero < 0){
+        numero *= -1;
+    }
+    return numero;
+}
+bool ArbolA::simetrico(const ArbolA& aComparar){
+    int altComparar = aComparar.obtenerAltura();
+    if(altComparar != this->obtenerAltura()){
+        return false;
     }
 }

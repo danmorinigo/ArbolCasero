@@ -1,6 +1,6 @@
 #include "nodo.h"
 Nodo::Nodo(Dato dato){
-    std::cout << "Constructor Nodo (" << this << ")" << std::endl;
+    //std::cout << "Constructor Nodo (" << this << ")" << std::endl;
     this->dato = dato;
     izq = 0;
     der = 0;
