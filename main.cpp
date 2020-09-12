@@ -25,7 +25,14 @@ void menu(ArbolA* arbolito){
         cout << "6. Recorrido en Profundidad: PostOrden\n";
         cout << "7. Eliminar un dato\n";
         cout << "8. Recorrido en ancho\n";
-        cout << "9. Salir\n";
+        cout << "9. Altura del arbol\n";
+        cout << "10. Valor mas grande\n";
+        cout << "11. Valor mas chico\n";
+        cout << "12. Insertar 20 valores al azar\n";
+        cout << "13. Recorrido en ancho ver.2\n";
+        cout << "14. Mostrar en que nivel esta un dato\n";
+        cout << "15. Nivel con mas nodos\n";
+        cout << "0. Salir\n";
         cout << "\nOpcion: ";
         cin >> opcion;
         switch (opcion){
@@ -70,7 +77,53 @@ void menu(ArbolA* arbolito){
                 arbolito->ancho();
                 cout << endl;
                 break;
-
+            case 9:
+                cout << "\nAltura del ARBOL\n";
+                if(arbolito->obtenerAltura() > 0){
+                    cout << "ALTURA: " << arbolito->obtenerAltura() << endl;
+                }else{
+                    cout << "ARBOL VACIO\n";
+                }
+                cout << endl;
+                break;
+            case 10:
+                cout << "\nValor mas alto\n";
+                arbolito->mayor();
+                break;
+            case 11:
+                cout << "\nValor mas bajo\n";
+                arbolito->minimo();
+                break;
+            case 12:
+                cout << "\nInsertar valores al azar (0 - 1000)\n";
+                int numero;
+                for(int i = 0; i < 20; i++){
+                    numero = rand() % 1000 - 0;
+                    if(!arbolito->existe(numero)){
+                        arbolito->insertar(numero);
+                    }
+                }
+                break;
+            case 13:
+                cout << "\nRecorrido en ancho version 2\n";
+                arbolito->ancho2();
+                break;
+            case 14:
+                cout << "\nMostrar en que nivel....\n";
+                int buscado, nivel;
+                cout << "Numero a buscar: ";
+                cin >> buscado;
+                nivel = arbolito->enNivel(buscado);
+                if(nivel == -1){
+                    cout << "No se encuentra dicho numero" << endl;
+                }else{
+                    cout << "Encontrado en Nivel " << nivel << ".\n";
+                }
+                break;
+            case 15:
+                cout << "\nNivel con mas nodos\n";
+                arbolito->nivelMasNodos();
+                break;
         }
-    }while(opcion != 9);
+    }while(opcion != 0);
 }

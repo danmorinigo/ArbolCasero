@@ -14,10 +14,15 @@ public:
     void asignarRaiz(Nodo*);
     Nodo* obtenerRaiz();
 
+    void ancho2();
     void eliminar(int);
     void eliminar(Nodo*);
     Nodo* minimo(Nodo*);
-
+    void minimo();
+    int obtenerAltura(Nodo* node);
+    Nodo* mayor(Nodo* nodo);
+    int obtenerAltura();
+    void mayor();
     void ancho();
     void mostrarCola(Cola*);
     void postOrden();
@@ -33,6 +38,11 @@ public:
     void insertar(Dato);
     void insertar(Nodo*, Dato);
     void eliminarArbolA(Nodo*);
+    bool existe(Dato buscado);
+    int enNivel(Dato buscado);
+    int enNivel(Dato buscado, Nodo* nodo, int nivel);
+    void nivelMasNodos();
+    int nivelConMasNodos();
 };
 
 #endif // ARBOLA_H_INCLUDED

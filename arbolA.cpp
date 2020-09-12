@@ -79,6 +79,13 @@ void ArbolA::buscar(Dato buscado){
         cout << "\nNo se encontro\n";
     }
 }
+bool ArbolA::existe(Dato buscado){
+    Nodo* aux = buscar(this->raiz, buscado);;
+    if(aux){
+        return true;
+    }
+    return false;
+}
 Nodo* ArbolA::buscar(Nodo* ptrRaiz, Dato buscado){
     if(!ptrRaiz){
         return 0;
@@ -247,7 +254,47 @@ Nodo* ArbolA::minimo(Nodo* ptrRaiz){
         return ptrRaiz;
     }
 }
+void ArbolA::minimo(){
+    Nodo* aux = this->minimo(this->raiz);
+    if(aux){
+        cout << "El valor mas chico es: " << aux->obtenerDato() << endl;
+    }else{
+        cout << "ARBOL ESTA VACIO\n";
+    }
+}
 
+int ArbolA::obtenerAltura(Nodo* node) {
+    if (node != NULL){
+        int alturaLadoIzquierdo = obtenerAltura(node->obtenerIzquierda()) + 1;
+        int alturaLadoDerecho = obtenerAltura(node->obtenerDerecha()) + 1;
+        if (alturaLadoIzquierdo > alturaLadoDerecho){
+            return alturaLadoIzquierdo;
+        }
+        return alturaLadoDerecho;
+    }
+    return 0;
+}
+
+int ArbolA::obtenerAltura() {
+    return this->obtenerAltura(this->raiz);
+}
+
+void ArbolA::mayor(){
+    if(this->mayor(this->raiz)){
+        cout << "El valor mas grande es: " << this->mayor(this->raiz)->obtenerDato() << endl;
+    }else{
+        cout << "ARBOL ESTA VACIO\n";
+    }
+}
+Nodo* ArbolA::mayor(Nodo* nodo){
+    if(nodo){
+        if(nodo->hijoDer()){
+            return mayor(nodo->obtenerDerecha());
+        }
+        return nodo;
+    }
+    return 0;
+}
 void ArbolA::eliminarArbolA(Nodo* ptrRaiz){
     if(ptrRaiz->esHoja()){
         cout << "Eliminando: " << ptrRaiz->obtenerDato() << endl;
@@ -262,4 +309,81 @@ void ArbolA::eliminarArbolA(Nodo* ptrRaiz){
     }
     cout << "Eliminando Raiz: " << ptrRaiz->obtenerDato() << endl;
     delete ptrRaiz;
+}
+void ArbolA::ancho2(){
+    Cola cola;
+    if(this->raiz){
+        cola.insertar(this->raiz);
+    }
+    int tamActual, nivel = 0;
+    Nodo* aux;
+    while(!cola.vacia()){
+        cout << "Nivel " << nivel << ": ";
+        tamActual = cola.obtenerTamanio();
+        for(int i = 0; i < tamActual; i++){
+            aux = cola.eliminar();
+            if(aux->hijoIzq()){
+                cola.insertar(aux->obtenerIzquierda());
+            }
+            if(aux->hijoDer()){
+                cola.insertar(aux->obtenerDerecha());
+            }
+            cout << aux->obtenerDato();
+            if(i + 1 == tamActual){
+                cout << endl;
+            }else{
+                cout << " - ";
+            }
+        }
+        nivel++;
+    }
+}
+void ArbolA::nivelMasNodos(){
+    int nivel = nivelConMasNodos();
+    if(nivel == -1){
+        cout << "Arbol vacio\n";
+    }else{
+        cout << "Nivel con mas nodos: " << nivel << ".\n";
+    }
+}
+int ArbolA::nivelConMasNodos(){
+    int nivel = -1, tamActual, nodosMax = -1, nivelActual = 0;
+    Cola cola;
+    if(this->raiz){
+        nivel = 0;
+        cola.insertar(this->raiz);
+    }
+    Nodo* aux;
+    while(!cola.vacia()){
+        tamActual = cola.obtenerTamanio();
+        if(tamActual > nodosMax){
+            nodosMax = tamActual;
+            nivel = nivelActual;
+        }
+        for(int i = 0; i < tamActual; i++){
+            aux = cola.eliminar();
+            if(aux->hijoDer()){
+                cola.insertar(aux->obtenerDerecha());
+            }
+            if(aux->hijoIzq()){
+                cola.insertar(aux->obtenerIzquierda());
+            }
+        }
+        nivelActual++;
+    }
+    return nivel;
+}
+int ArbolA::enNivel(Dato buscado){
+    return this->enNivel(buscado, this->raiz, 0);
+}
+int ArbolA::enNivel(Dato buscado, Nodo* nodo, int nivel){
+    if(!nodo){
+        return -1;
+    }else if(buscado == nodo->obtenerDato()){
+        return nivel;
+    }else if(buscado > nodo->obtenerDato()){
+        return enNivel(buscado, nodo->obtenerDerecha(), nivel + 1);
+    }else{
+        return enNivel(buscado, nodo->obtenerIzquierda(), nivel + 1);
+    }
 }

@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1599874494 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.cpp
+	"arbolA.h"
+
+1599873568 c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.h
+	"nodo.h"
+	"cola.h"
+
+1595188255 c:\users\dany\documents\github\arbolcasero\arbolcasero\nodo.h
+	<iostream>
+
+1595345505 c:\users\dany\documents\github\arbolcasero\arbolcasero\cola.h
+	"nodoCola.h"
+
+1595349129 c:\users\dany\documents\github\arbolcasero\arbolcasero\nodocola.h
+	<iostream>
+	"nodo.h"
+
+1595349129 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\cola.cpp
+	"cola.h"
+
+1599874620 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	"arbolA.h"
+
+1595193876 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\nodo.cpp
+	"nodo.h"
+
+1595335040 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\nodocola.cpp
+	"nodoCola.h"
+
