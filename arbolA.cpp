@@ -426,8 +426,55 @@ int ArbolA::vAbsoluto(int numero){
     return numero;
 }
 bool ArbolA::simetrico(const ArbolA& aComparar){
-    int altComparar = aComparar.obtenerAltura();
-    if(altComparar != this->obtenerAltura()){
+    int altComparar = this->alturaBalance(aComparar.raiz);
+    if(altComparar == this->alturaBalance(this->raiz)){
+        Cola original, comparando;
+        original.insertar(this->raiz);
+        comparando.insertar(aComparar.raiz);
+        int nodosOriginal;
+        Nodo* aux, *aux2;
+        for(int j = 0; j < altComparar; j++){
+            nodosOriginal = original.obtenerTamanio();
+            for(int i = 0; i < nodosOriginal; i++){
+                if((original.consultar() && !comparando.consultar()) || (!original.consultar() && comparando.consultar())){
+                    cout << "NODOS DIFERENTES en nivel " << j << "." << endl;
+                    return false;
+                }
+                aux = original.eliminar();
+                aux2 = comparando.eliminar();
+                if(aux){
+                    if(aux->hijoIzq()){
+                        original.insertar(aux->obtenerIzquierda());
+                    }else{
+                        original.insertar(0);
+                    }
+                    if(aux->hijoDer()){
+                        original.insertar(aux->obtenerDerecha());
+                    }else{
+                        original.insertar(0);
+                    }
+
+                    if(aux2->hijoIzq()){
+                        comparando.insertar(aux2->obtenerIzquierda());
+                    }else{
+                        comparando.insertar(0);
+                    }
+                    if(aux2->hijoDer()){
+                        comparando.insertar(aux2->obtenerDerecha());
+                    }else{
+                        comparando.insertar(0);
+                    }
+                }else{
+                    original.insertar(0);
+                    comparando.insertar(0);
+                    original.insertar(0);
+                    comparando.insertar(0);
+                }
+            }
+        }
+    }else{
+        cout << "ALTURAS DIFERENTES" << endl;
         return false;
     }
+    return true;
 }

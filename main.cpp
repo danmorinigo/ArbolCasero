@@ -33,6 +33,7 @@ void menu(ArbolA* arbolito){
         cout << "14. Mostrar en que nivel esta un dato\n";
         cout << "15. Nivel con mas nodos\n";
         cout << "16. Balanceado?\n";
+        cout << "17. Comparar simetria con otro arbol\n";
         cout << "0. Salir\n";
         cout << "\nOpcion: ";
         cin >> opcion;
@@ -128,6 +129,18 @@ void menu(ArbolA* arbolito){
             case 16:
                 cout << "\nEsta balanceado?\n";
                 arbolito->balanceado();
+                break;
+            case 17:
+                cout << "\nComparar simetria\n";
+                ArbolA arbol2;
+                arbol2.insertar(50);
+                arbol2.insertar(25);
+                arbol2.insertar(60);
+                if(arbolito->simetrico(arbol2)){
+                    cout << "SI" << endl;
+                }else{
+                    cout << "NO" << endl;
+                }
                 break;
         }
     }while(opcion != 0);

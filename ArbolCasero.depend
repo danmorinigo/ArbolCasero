@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1599923161 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.cpp
+1600084037 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.cpp
 	"arbolA.h"
 
-1599925323 c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.h
+1600081272 c:\users\dany\documents\github\arbolcasero\arbolcasero\arbola.h
 	"nodo.h"
 	"cola.h"
 
@@ -19,7 +19,7 @@
 1595349129 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\cola.cpp
 	"cola.h"
 
-1599884321 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\main.cpp
+1600083013 source:c:\users\dany\documents\github\arbolcasero\arbolcasero\main.cpp
 	<iostream>
 	<stdlib.h>
 	<time.h>
